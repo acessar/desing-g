@@ -6,28 +6,24 @@
 }
 
 :root {
-    --black: #000000;
-    --black-soft: #0a0a0a;
-    --gold-primary: #D4AF37;
-    --gold-light: #E6C35B;
-    --gold-bright: #F1DD8A;
-    --gold-dark: #B58C2B;
-    --gold-glow: rgba(212, 175, 55, 0.3);
-    --text-white: #FFFFFF;
-    --text-gray: #E5E5E5;
-    --text-light-gray: #B8B8B8;
-    --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --primary-gold: #d4a45a;
+    --primary-gold-hover: #c49660;
+    --primary-light-gold: #e6b860;
+    --dark-brown: #8b7355;
+    --light-beige: #f5f1e8;
+    --medium-beige: #ebe5d9;
+    --dark-beige: #d4c5b0;
+    --text-dark: #4a4a4a;
+    --text-light: #8b7355;
+    --shadow: rgba(0, 0, 0, 0.12);
+    --transition: 0.3s ease;
 }
 
 body {
     font-family: 'Inter', sans-serif;
-    background: var(--black);
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.02) 0%, transparent 50%),
-        linear-gradient(135deg, transparent 0%, rgba(212, 175, 55, 0.01) 50%, transparent 100%);
+    background: linear-gradient(180deg, #8b7355 0%, #f5f1e8 100%);
     background-attachment: fixed;
-    color: var(--text-white);
+    color: var(--text-dark);
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
@@ -117,30 +113,56 @@ body {
     }
 }
 
-@keyframes rotateGlow {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes goldGlow {
-    0%, 100% {
-        box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-    }
-    50% {
-        box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-    }
-}
-
 @keyframes heartbeat {
     0%, 100% {
         transform: scale(1);
     }
     25%, 75% {
         transform: scale(1.02);
+    }
+}
+
+@keyframes goldGlow {
+    0%, 100% {
+        box-shadow: 
+            0 3px 10px rgba(212, 175, 55, 0.2),
+            0 1px 4px rgba(0, 0, 0, 0.08),
+            0 0 20px rgba(212, 175, 55, 0.15),
+            0 0 40px rgba(230, 184, 96, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.35),
+            inset 0 -1px 0 rgba(181, 140, 43, 0.15);
+    }
+    50% {
+        box-shadow: 
+            0 5px 18px rgba(212, 175, 55, 0.4),
+            0 2px 8px rgba(0, 0, 0, 0.12),
+            0 0 30px rgba(212, 175, 55, 0.3),
+            0 0 60px rgba(230, 184, 96, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5),
+            inset 0 -1px 0 rgba(181, 140, 43, 0.25);
+    }
+}
+
+@keyframes zoomInOut {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes goldShimmerIntense {
+    0% {
+        background-position: -200% 0;
+        filter: brightness(1);
+    }
+    50% {
+        filter: brightness(1.15);
+    }
+    100% {
+        background-position: 200% 0;
+        filter: brightness(1);
     }
 }
 
@@ -151,7 +173,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--black);
+    background: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,11 +189,10 @@ body {
 .loader {
     width: 40px;
     height: 40px;
-    border: 2px solid rgba(212, 175, 55, 0.2);
-    border-top: 2px solid var(--gold-primary);
+    border: 2px solid #f0f0f0;
+    border-top: 2px solid var(--primary-gold);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
 }
 
 /* ===== HERO BANNER ===== */
@@ -202,22 +223,19 @@ body {
 .hero-content h1 {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
-    font-weight: 400;
-    color: var(--text-white);
-    letter-spacing: 3px;
+    font-weight: 500;
+    color: var(--dark-brown);
+    letter-spacing: 2px;
     margin-bottom: 0.8rem;
     animation: fadeInUp 0.8s ease-out 0.3s both;
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }
 
 .hero-content p {
-    font-size: 0.95rem;
+    font-size: 1rem;
     animation: fadeInUp 0.8s ease-out 0.5s both;
-    color: var(--text-light-gray);
+    color: var(--text-light);
     font-weight: 300;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-size: 0.85rem;
+    letter-spacing: 0.5px;
 }
 
 .hero-content .logo-container {
@@ -225,42 +243,22 @@ body {
     height: 180px;
     border-radius: 50%;
     overflow: hidden;
-    border: 2px solid var(--gold-primary);
+    border: 3px solid var(--primary-gold);
     margin-bottom: 1rem;
-    background: var(--black-soft);
+    background: linear-gradient(135deg, var(--primary-light-gold), var(--primary-gold));
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 
-        0 0 30px rgba(212, 175, 55, 0.2),
-        0 0 60px rgba(212, 175, 55, 0.1),
-        inset 0 0 20px rgba(212, 175, 55, 0.05);
+    box-shadow: 0 10px 30px rgba(212, 164, 90, 0.25),
+               0 0 20px rgba(230, 184, 96, 0.15);
     animation: fadeInUp 0.8s ease-out;
     transition: all var(--transition);
-    position: relative;
-}
-
-.hero-content .logo-container::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, var(--gold-primary), var(--gold-light), var(--gold-primary));
-    opacity: 0.3;
-    z-index: -1;
-    animation: rotateGlow 3s linear infinite;
 }
 
 .hero-content .logo-container:hover {
     transform: translateY(-3px);
-    box-shadow: 
-        0 0 40px rgba(212, 175, 55, 0.3),
-        0 0 80px rgba(212, 175, 55, 0.15),
-        inset 0 0 30px rgba(212, 175, 55, 0.08);
-    border-color: var(--gold-light);
+    box-shadow: 0 15px 40px rgba(212, 164, 90, 0.35),
+               0 0 30px rgba(230, 184, 96, 0.2);
 }
 
 .hero-content .logo-container img {
@@ -283,22 +281,9 @@ body {
     z-index: 2;
 }
 
-/* Linha dourada decorativa sutil */
-.container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-    pointer-events: none;
-}
-
 /* ===== SEÇÃO DE CONTATO ===== */
 .contact-section {
-    padding: 3rem 0;
+    padding: 2rem 0;
     text-align: center;
     background: transparent;
     width: 100%;
@@ -363,42 +348,52 @@ body {
     justify-content: center;
     gap: 1rem;
     padding: 1rem 2rem;
-    background: transparent;
-    color: var(--text-white);
+    background: linear-gradient(90deg, #D4AF37 0%, #E6C35B 25%, #F1DD8A 50%, #E6C35B 75%, #D4AF37 100%);
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    color: #FFFFFD;
     text-decoration: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    font-weight: 400;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
+    border-radius: 15px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.4px;
     cursor: pointer;
-    border: 1px solid var(--gold-primary);
+    border: 1px solid #B58C2B;
     width: 100%;
     max-width: 300px;
     height: 56px;
     position: relative;
     overflow: hidden;
-    transition: all var(--transition);
-    backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    animation: 
+        goldGlow 3s ease-in-out infinite,
+        zoomInOut 2.5s ease-in-out infinite,
+        goldShimmerIntense 4s linear infinite;
     box-shadow: 
+        0 3px 10px rgba(212, 175, 55, 0.2),
+        0 1px 4px rgba(0, 0, 0, 0.08),
         0 0 20px rgba(212, 175, 55, 0.15),
-        inset 0 0 20px rgba(212, 175, 55, 0.05);
+        0 0 40px rgba(230, 184, 96, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35),
+        inset 0 -1px 0 rgba(181, 140, 43, 0.15);
 }
 
-/* Brilho metálico interno */
+/* Highlight reflexivo no topo - sutil e elegante */
 .main-button::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
-    transition: left 0.6s ease;
-    z-index: 0;
+    left: 0;
+    right: 0;
+    height: 45%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
+    border-radius: 15px 15px 0 0;
+    pointer-events: none;
+    z-index: 1;
 }
 
-/* Efeito de brilho diagonal discreto - muito sutil */
+/* Efeito de brilho diagonal intenso dourado */
 .main-button::after {
     content: '';
     position: absolute;
@@ -408,36 +403,47 @@ body {
     height: 200%;
     background: linear-gradient(
         45deg,
-        transparent 40%,
-        rgba(212, 175, 55, 0.1) 50%,
-        transparent 60%
+        transparent 30%,
+        rgba(255, 255, 255, 0.25) 45%,
+        rgba(255, 215, 0, 0.4) 50%,
+        rgba(255, 255, 255, 0.25) 55%,
+        transparent 70%
     );
     animation: diagonalShine 2s ease-in-out infinite;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
 }
 
-/* Efeito de glow dourado no hover */
+/* Efeito de brilho metálico no hover - movimento da esquerda para direita */
 .main-button:hover {
-    transform: translateY(-2px);
-    border-color: var(--gold-light);
+    transform: scale(1.08);
+    background-position: 100% 50%;
+    animation: 
+        goldGlow 1.5s ease-in-out infinite,
+        zoomInOut 1.8s ease-in-out infinite,
+        goldShimmerIntense 3s linear infinite;
     box-shadow: 
-        0 0 30px rgba(212, 175, 55, 0.4),
-        0 0 60px rgba(212, 175, 55, 0.2),
-        inset 0 0 30px rgba(212, 175, 55, 0.1);
-    background: rgba(212, 175, 55, 0.05);
+        0 8px 25px rgba(212, 175, 55, 0.5),
+        0 3px 12px rgba(0, 0, 0, 0.15),
+        0 0 40px rgba(212, 175, 55, 0.4),
+        0 0 80px rgba(230, 184, 96, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55),
+        inset 0 -1px 0 rgba(181, 140, 43, 0.35);
+    border-color: #C9A03A;
+    filter: brightness(1.1);
 }
 
-/* Brilho se move no hover */
+/* Animação suave do brilho metálico no hover */
 .main-button:hover::before {
-    left: 100%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.08) 50%, transparent 100%);
 }
 
 .main-button:active {
-    transform: translateY(0);
+    transform: scale(1.01);
     box-shadow: 
-        0 0 15px rgba(212, 175, 55, 0.3),
-        inset 0 0 20px rgba(212, 175, 55, 0.1);
+        0 3px 10px rgba(212, 175, 55, 0.3),
+        0 1px 4px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .main-button span,
@@ -450,30 +456,19 @@ body {
     width: 24px;
     height: 24px;
     flex-shrink: 0;
-    color: var(--gold-primary);
-    filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
-    transition: all var(--transition);
-}
-
-.main-button:hover .button-icon {
-    color: var(--gold-light);
-    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
-    transform: scale(1.05);
 }
 
 .button-container p {
     margin-top: 0.5rem;
-    color: var(--text-light-gray);
-    font-size: 0.75rem;
+    color: var(--text-light);
+    font-size: 0.85rem;
     font-weight: 300;
     text-align: center;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
 }
 
 .button-container p.text {
-    color: var(--text-light-gray);
-    font-weight: 300;
+    color: var(--text-light);
+    font-weight: 400;
 }
 
 
@@ -492,21 +487,15 @@ body {
     height: 300px;
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-    box-shadow: 
-        0 0 20px rgba(212, 175, 55, 0.1),
-        inset 0 0 20px rgba(212, 175, 55, 0.05);
+    border: 2px solid var(--dark-beige);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     transition: all var(--transition);
-    background: var(--black-soft);
 }
 
 .map-wrapper:hover {
     transform: translateY(-4px);
-    border-color: var(--gold-primary);
-    box-shadow: 
-        0 0 30px rgba(212, 175, 55, 0.2),
-        0 0 60px rgba(212, 175, 55, 0.1),
-        inset 0 0 30px rgba(212, 175, 55, 0.08);
+    box-shadow: 0 12px 30px rgba(212, 164, 90, 0.2);
+    border-color: var(--primary-gold);
 }
 
 .map-wrapper iframe {
@@ -517,15 +506,15 @@ body {
 
 /* ===== FOOTER ===== */
 footer {
-    background: var(--black-soft);
-    color: var(--text-white);
-    padding: 2rem 0 1.5rem;
+    background: linear-gradient(135deg, var(--dark-brown), var(--text-light));
+    color: #ffffff;
+    padding: 1.5rem 0 1rem;
     text-align: center;
     width: 100%;
     position: relative;
     z-index: 2;
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
-    margin-top: 3rem;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.12);
+    margin-top: 2rem;
 }
 
 .footer-content {
@@ -535,13 +524,12 @@ footer {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    border-top: 1px solid rgba(230, 184, 96, 0.2);
     padding-top: 1rem;
-    font-size: 0.8rem;
-    color: var(--text-light-gray);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 300;
     text-align: center;
-    letter-spacing: 0.5px;
 }
 
 /* ===== FADE-IN SCROLL ===== */
@@ -621,22 +609,12 @@ footer {
     height: 280px;
     background-size: cover;
     background-position: center;
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 
-        0 0 20px rgba(212, 175, 55, 0.15),
-        0 0 40px rgba(212, 175, 55, 0.08);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    background-color: var(--black-soft);
-    transition: all var(--transition);
-}
-
-.service-card:hover .service-card-image {
-    border-color: var(--gold-primary);
-    box-shadow: 
-        0 0 30px rgba(212, 175, 55, 0.3),
-        0 0 60px rgba(212, 175, 55, 0.15);
-    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(212, 164, 90, 0.25),
+               0 0 20px rgba(230, 184, 96, 0.15);
+    border: 2px solid var(--primary-gold);
+    background-color: var(--light-beige);
 }
 
 .service-card-overlay {
@@ -645,7 +623,7 @@ footer {
     left: 0;
     right: 0;
     height: 50%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+    background: linear-gradient(to top, rgba(139, 115, 85, 0.85) 0%, rgba(139, 115, 85, 0.4) 50%, transparent 100%);
     pointer-events: none;
 }
 
@@ -661,42 +639,35 @@ footer {
 .service-card-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--gold-primary);
+    font-weight: 600;
+    color: #ffffff;
     margin-bottom: 0.5rem;
-    text-shadow: 
-        0 0 10px rgba(212, 175, 55, 0.5),
-        0 2px 8px rgba(0, 0, 0, 0.8);
-    letter-spacing: 1px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .service-card-description {
-    font-size: 0.85rem;
-    color: var(--text-gray);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 300;
-    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* ===== FOOTER TEXT ===== */
 .text-footer {
     margin-top: 0.5rem;
-    color: var(--text-light-gray);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .text-footer a {
-    color: var(--gold-primary);
+    color: var(--primary-light-gold);
     text-decoration: none;
-    font-weight: 300;
-    transition: all var(--transition);
-    border-bottom: 1px solid transparent;
+    font-weight: 400;
+    transition: color 0.3s ease;
 }
 
 .text-footer a:hover {
-    color: var(--gold-light);
-    border-bottom-color: var(--gold-light);
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+    color: var(--primary-gold);
+    text-decoration: underline;
 }
 
 /* ===== RESPONSIVO ===== */
